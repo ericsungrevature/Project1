@@ -25,7 +25,6 @@ public class AddServlet extends HttpServlet {
 		UserDao dao = UserDaoFactory.getUserDao();
 		HttpSession session = request.getSession(false);
 		User user = (User)session.getAttribute("user");
-		out.print(user.getId());
 		Ticket tikt = new Ticket();
 		tikt.setUserId(user.getId());
 		tikt.setValue(value);

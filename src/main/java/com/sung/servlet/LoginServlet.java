@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 			User user = dao.getUserByUsername(username);
 			if(password.equals(user.getPassword())) {
 				out.print("<h1>Successful Login</h1>");
-				out.print("<p>Welcome " + user.getUsername() + user.getId() + "</p>");
+				out.print("<p>Welcome " + user.getUsername() + "</p>");
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				if (user.getStatus().equals("employee")) {

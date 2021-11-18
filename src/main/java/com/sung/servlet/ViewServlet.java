@@ -21,12 +21,10 @@ public class ViewServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.print("<a href=\"employee.html\">Back</a><br>");
 		out.println("<h1>Ticket Requests</h1>");
 		UserDao dao = UserDaoFactory.getUserDao();
 		HttpSession session = request.getSession(false);
 		User user = (User)session.getAttribute("user");
-		out.print(user.getId());
 		List<Ticket> list;
 		out.print("<table>");
 		out.print("<thead>");
@@ -44,10 +42,22 @@ public class ViewServlet extends HttpServlet {
 				out.print("<tr>");
 				out.print("<td>" + tikt.getId() + "</td>");
 				out.print("<td>" + tikt.getUserId() + "</td>");
-				out.print("<td>" + tikt.getValue() + "</td>");
+				out.print("<td>" + tikt.getValueString() + "</td>");
 				out.print("<td>" + tikt.getStatus() + "</td>");
 				out.print("</tr>");
 			}
+			out.print("<a href=\"employee.html\">Back</a><br>");
+		} else if (user.getStatus().equals("manager")) {
+			list = dao.getTickets();
+			for (Ticket tikt : list) {
+				out.print("<tr>");
+				out.print("<td>" + tikt.getId() + "</td>");
+				out.print("<td>" + tikt.getUserId() + "</td>");
+				out.print("<td>" + tikt.getValueString() + "</td>");
+				out.print("<td>" + tikt.getStatus() + "</td>");
+				out.print("</tr>");
+			}
+			out.print("<a href=\"manager.html\">Back</a><br>");
 		}
 		out.print("</tbody>");
 		out.print("</table>");

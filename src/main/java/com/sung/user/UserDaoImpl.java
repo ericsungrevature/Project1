@@ -15,6 +15,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.NativeQuery;
 
 import com.sung.config.ConnectionFactory;
 
@@ -83,8 +84,8 @@ public class UserDaoImpl implements UserDao {
 	public List<Ticket> getTickets() {
 		List<Ticket> list = new ArrayList<Ticket>();
 		Session session = factory.openSession();
-		Query<Ticket> query = session.createQuery("from ticket");
-		list = query.list();
+		Criteria cr = session.createCriteria(Ticket.class);
+		list = cr.list();
 		session.close();
 //		String sql = "select * from ticket";
 //		Statement statement = connection.createStatement();

@@ -41,4 +41,20 @@
   	<servlet-name>view</servlet-name>
 	<url-pattern>/viewservlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>pending</servlet-name>
+	<servlet-class>com.sung.servlet.PendingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>pending</servlet-name>
+	<url-pattern>/pendingservlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>authorize</servlet-name>
+	<servlet-class>com.sung.servlet.AuthorizeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>authorize</servlet-name>
+	<url-pattern>/authorizeservlet</url-pattern>
+  </servlet-mapping>
 </web-app>
