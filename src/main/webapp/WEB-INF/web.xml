@@ -17,4 +17,28 @@
   	<servlet-name>login</servlet-name>
 	<url-pattern>/loginservlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>logout</servlet-name>
+	<servlet-class>com.sung.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>logout</servlet-name>
+	<url-pattern>/logoutservlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>add</servlet-name>
+	<servlet-class>com.sung.servlet.AddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>add</servlet-name>
+	<url-pattern>/addservlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>view</servlet-name>
+	<servlet-class>com.sung.servlet.ViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>view</servlet-name>
+	<url-pattern>/viewservlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -77,9 +78,14 @@ public class UserDaoImpl implements UserDao {
 //		preparedStatement.executeUpdate();
 //	}
 
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<Ticket> getTickets() {
 		List<Ticket> list = new ArrayList<Ticket>();
+		Session session = factory.openSession();
+		Query<Ticket> query = session.createQuery("from ticket");
+		list = query.list();
+		session.close();
 //		String sql = "select * from ticket";
 //		Statement statement = connection.createStatement();
 //		ResultSet resultSet = statement.executeQuery(sql);
@@ -94,9 +100,15 @@ public class UserDaoImpl implements UserDao {
 		return list;
 	}
 
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<Ticket> getTickets(User user) {
 		List<Ticket> list = new ArrayList<Ticket>();
+		Session session = factory.openSession();
+		Criteria cr = session.createCriteria(Ticket.class);
+		cr.add(Restrictions.eq("user_id", user.getId()));
+		list = cr.list();
+		session.close();
 //		String sql = "select * from ticket where username = ?";
 //		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 //		preparedStatement.setString(1, user.getUsername());
@@ -112,9 +124,15 @@ public class UserDaoImpl implements UserDao {
 		return list;
 	}
 
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public List<Ticket> getTickets(String status) {
 		List<Ticket> list = new ArrayList<Ticket>();
+		Session session = factory.openSession();
+		Criteria cr = session.createCriteria(Ticket.class);
+		cr.add(Restrictions.eq("status", status));
+		list = cr.list();
+		session.close();
 //		String sql = "select * from ticket where status = ?";
 //		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 //		preparedStatement.setString(1, status);
@@ -130,9 +148,9 @@ public class UserDaoImpl implements UserDao {
 		return list;
 	}
 
-	@Override
-	public List<Ticket> getTickets(User user, String status) {
-		List<Ticket> list = new ArrayList<Ticket>();
+//	@Override
+//	public List<Ticket> getTickets(User user, String status) {
+//		List<Ticket> list = new ArrayList<Ticket>();
 //		String sql = "select * from ticket where username = ? and status = ?";
 //		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 //		preparedStatement.setString(1, user.getUsername());
@@ -146,8 +164,8 @@ public class UserDaoImpl implements UserDao {
 //			t.setStatus(resultSet.getString(4));
 //			list.add(t);
 //		}
-		return list;
-	}
+//		return list;
+//	}
 
 //	@Override
 //	public User getUserById(int id) {
@@ -160,7 +178,7 @@ public class UserDaoImpl implements UserDao {
 //		return user;
 //	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public User getUserByUsername(String username) {
 		User user = new User();
