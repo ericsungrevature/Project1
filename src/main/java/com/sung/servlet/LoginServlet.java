@@ -17,18 +17,22 @@ import com.sung.user.UserDaoFactory;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
-	UserDao dao = UserDaoFactory.getUserDao();
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		try {
+			UserDao dao = UserDaoFactory.getUserDao();
 			User user = dao.getUserByUsername(username);
+//			User user = new User();
+//			user.setUsername("admin");
+//			user.setPassword("123");
 			if(password.equals(user.getPassword())) {
 				out.print("<h1>Successful Login</h1>");
-				Cookie cookie = new Cookie("username", username);
-				response.addCookie(cookie);
+				out.print("<p>Welcome " + user.getUsername() + "</p>");
+//				Cookie cookie = new Cookie("username", username);
+//				response.addCookie(cookie);
 			} else {
 				throw new SQLException();
 			}

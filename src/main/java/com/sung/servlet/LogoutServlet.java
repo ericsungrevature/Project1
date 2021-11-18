@@ -14,8 +14,8 @@ public class LogoutServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		Cookie cookie = new Cookie("username", null);
-		response.addCookie(cookie);
+//		Cookie cookie = new Cookie("username", null);
+//		response.addCookie(cookie);
 		out.println("<h1>Successful Logout</h1>");
 		out.close();
 	}
