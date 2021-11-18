@@ -19,6 +19,7 @@ public class PendingServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<h1>Ticket Pending</h1>");
+		out.print("<a href=\"manager.html\">Back</a><br>");
 		UserDao dao = UserDaoFactory.getUserDao();
 		List<Ticket> list;
 		out.print("<table>");
@@ -52,7 +53,6 @@ public class PendingServlet extends HttpServlet {
 					+ "\">Reject</a></td>");
 			out.print("</tr>");
 		}
-		out.print("<a href=\"manager.html\">Back</a><br>");
 		out.print("</tbody>");
 		out.print("</table>");
 		out.close();

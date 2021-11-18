@@ -38,6 +38,7 @@ public class ViewServlet extends HttpServlet {
 		out.print("<tbody>");
 		if (user.getStatus().equals("employee")) {
 			list = dao.getTickets(user);
+			out.print("<a href=\"employee.html\">Back</a><br>");
 			for (Ticket tikt : list) {
 				out.print("<tr>");
 				out.print("<td>" + tikt.getId() + "</td>");
@@ -46,9 +47,9 @@ public class ViewServlet extends HttpServlet {
 				out.print("<td>" + tikt.getStatus() + "</td>");
 				out.print("</tr>");
 			}
-			out.print("<a href=\"employee.html\">Back</a><br>");
 		} else if (user.getStatus().equals("manager")) {
 			list = dao.getTickets();
+			out.print("<a href=\"manager.html\">Back</a><br>");
 			for (Ticket tikt : list) {
 				out.print("<tr>");
 				out.print("<td>" + tikt.getId() + "</td>");
@@ -57,7 +58,6 @@ public class ViewServlet extends HttpServlet {
 				out.print("<td>" + tikt.getStatus() + "</td>");
 				out.print("</tr>");
 			}
-			out.print("<a href=\"manager.html\">Back</a><br>");
 		}
 		out.print("</tbody>");
 		out.print("</table>");
