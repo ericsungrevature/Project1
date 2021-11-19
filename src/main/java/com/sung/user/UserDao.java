@@ -1,6 +1,5 @@
 package com.sung.user;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /*All employees in the company can
@@ -18,11 +17,8 @@ import java.util.List;
 public interface UserDao {
 	void addTicket(Ticket tikt);
 	void updateTicket(Ticket tikt);
-//	void removeTicket(Ticket tikt);
 	List<Ticket> getTickets();
 	List<Ticket> getTickets(User user);
 	List<Ticket> getTickets(String status);
-//	List<Ticket> getTickets(User user, String status);
-//	User getUserById(int id);
 	User getUserByUsername(String username);
 }
