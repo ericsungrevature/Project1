@@ -44,8 +44,8 @@ public class PendingServlet extends HttpServlet {
 		        out.print("<th scope=\"col\">User Id</th>");
 		        out.print("<th scope=\"col\">Value</th>");
 		        out.print("<th scope=\"col\">Status</th>");
-		        out.print("<th scope=\"col\"></th>");
-		        out.print("<th scope=\"col\">Actions</th>");
+//		        out.print("<th scope=\"col\"></th>");
+		        out.print("<th class=\"text-center\" scope=\"col\" colspan=\"2\">Actions</th>");
 		        out.print("</tr>");
 		        out.print("</thead>");
 		        out.print("<tbody>");
