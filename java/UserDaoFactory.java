@@ -1,4 +1,3 @@
-package com.sung.user;
 
 public class UserDaoFactory {
 	private static UserDao userDao;
