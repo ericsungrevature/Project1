@@ -17,35 +17,30 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		UserDao dao = UserDaoFactory.getUserDao();
 		try {
-			UserDao dao = UserDaoFactory.getUserDao();
 			User user = dao.getUserByUsername(username);
-			if(password.equals(user.getPassword())) {
-
-//				out.print("<h1>Successful Login</h1>");
+			if (password.equals(user.getPassword())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
 				out.println("<script>");
 				out.println("alert('Successfully Logged In');");
 				out.println("</script>");
 				out.print("<p style='text-align:center; padding:10px'>Welcome " + user.getUsername() + " ID: " + user.getId() + "</p>");
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
 				if (user.getStatus().equals("employee")) {
 					RequestDispatcher rd = request.getRequestDispatcher("employee.html");
 					rd.include(request, response);
 				} else if (user.getStatus().equals("manager")) {
 					RequestDispatcher rd = request.getRequestDispatcher("manager.html");
 					rd.include(request, response);
-				} else {
-					throw new Exception();
 				}
 			} else {
 				throw new Exception();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-//			out.print("<h1>Invalid Login</h1>");
 			out.println("<script>");
-			out.println("alert('Invalid Login, Please check username and password.');");
+			out.println("alert('Invalid Login, please check username and password');");
 			out.println("</script>");
 			RequestDispatcher rd = request.getRequestDispatcher("index.html");
 			rd.include(request, response);

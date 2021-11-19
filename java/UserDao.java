@@ -1,5 +1,3 @@
-
-import java.sql.SQLException;
 import java.util.List;
 
 /*All employees in the company can
