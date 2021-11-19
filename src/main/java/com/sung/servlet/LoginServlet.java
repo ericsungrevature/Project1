@@ -37,8 +37,6 @@ public class LoginServlet extends HttpServlet {
 				} else if (user.getStatus().equals("manager")) {
 					RequestDispatcher rd = request.getRequestDispatcher("manager.html");
 					rd.include(request, response);
-				} else {
-					throw new Exception();
 				}
 			} else {
 				throw new Exception();
@@ -46,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.println("<script>");
-			out.println("alert('Invalid Login, Please check username and password.');");
+			out.println("alert('Invalid Login, please check username and password');");
 			out.println("</script>");
 			RequestDispatcher rd = request.getRequestDispatcher("index.html");
 			rd.include(request, response);
