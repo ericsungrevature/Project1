@@ -21,6 +21,7 @@ public class UserDaoImpl implements UserDao {
 		factory = cfg.buildSessionFactory();
 	}
 
+	// add reimbursement ticket
 	@Override
 	public void addTicket(Ticket tikt) {
 		Session session = factory.openSession();
@@ -30,6 +31,7 @@ public class UserDaoImpl implements UserDao {
 		session.close();
 	}
 
+	// update reimbursement ticket
 	@Override
 	public void updateTicket(Ticket tikt) {
 		Session session = factory.openSession();
@@ -54,6 +56,7 @@ public class UserDaoImpl implements UserDao {
 //	}
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
+	// get all reimbursement tickets
 	@Override
 	public List<Ticket> getTickets() {
 		List<Ticket> list = new ArrayList<Ticket>();
@@ -65,6 +68,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
+	// get reimbursement ticket by each user
 	@Override
 	public List<Ticket> getTickets(User user) {
 		List<Ticket> list = new ArrayList<Ticket>();
@@ -77,6 +81,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
+	// get reimbursement ticket by pending status
 	@Override
 	public List<Ticket> getTickets(String status) {
 		List<Ticket> list = new ArrayList<Ticket>();
@@ -89,6 +94,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
+	// get user by username
 	@Override
 	public User getUserByUsername(String username) {
 		User user = new User();

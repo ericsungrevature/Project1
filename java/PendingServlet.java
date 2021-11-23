@@ -15,9 +15,11 @@ public class PendingServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         UserDao dao = UserDaoFactory.getUserDao();
+        // start the try and catch
         try {
             HttpSession session = request.getSession(false);
             User user = (User)session.getAttribute("user");
+            // exception if user is not manager
             if (!user.getStatus().equals("manager")) {
                 throw new Exception();
             }
@@ -27,15 +29,18 @@ public class PendingServlet extends HttpServlet {
             out.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">\n");
             out.print("<div class='container'>");
             out.println("<input type=\"button\" class=\"btn btn-outline-dark\" text-center\" onclick=\"window.location.href='manager.html'\" value=\"Back\">\n");
+            // display if there is no pending tickets
             if (list.isEmpty()) {
                 out.println("<p style='text-align:center'>There are no pending requests at this time</p>");
             } else {
+                // display pending tickets in table form
                 out.print("<table class='table table-dark'>");
                 out.print("<thead>");
                 out.print("<tr>");
                 out.print("<th scope=\"col\">Id</th>");
                 out.print("<th scope=\"col\">User Id</th>");
                 out.print("<th scope=\"col\">Value</th>");
+                out.print("<th scope=\"col\">Description</th>");
                 out.print("<th scope=\"col\">Status</th>");
                 out.print("<th class=\"text-center\" scope=\"col\" colspan=\"2\">Actions</th>");
                 out.print("</tr>");
@@ -46,17 +51,22 @@ public class PendingServlet extends HttpServlet {
                     out.print("<td>" + tikt.getId() + "</td>");
                     out.print("<td>" + tikt.getUserId() + "</td>");
                     out.print("<td>" + tikt.getValueString() + "</td>");
+                    out.print("<td>" + tikt.getDescription() + "</td>");
                     out.print("<td>" + tikt.getStatus() + "</td>");
+                    // save ticket info if ticket gets approved
                     out.print("<td><a href=\"authorizeservlet?"
                             + "tikt_id=" + tikt.getId()
                             + "&user_id=" + tikt.getUserId()
                             + "&tikt_value=" + tikt.getValue()
+                            + "&tikt_description=" + tikt.getDescription()
                             + "&tikt_status=approved"
                             + "\">Approve</a></td>");
+                    // save ticket info if ticket gets rejected
                     out.print("<td><a href=\"authorizeservlet?"
                             + "tikt_id=" + tikt.getId()
                             + "&user_id=" + tikt.getUserId()
                             + "&tikt_value=" + tikt.getValue()
+                            + "&tikt_description=" + tikt.getDescription()
                             + "&tikt_status=rejected"
                             + "\">Reject</a></td>");
                     out.print("</tr>");
@@ -65,11 +75,13 @@ public class PendingServlet extends HttpServlet {
                 out.print("</table>");
             }
             out.print("</div>");
+            // catch and alert message if user is not logged in as manager
         } catch (Exception e) {
             e.printStackTrace();
             out.println("<script>");
             out.println("alert('Unauthorized User, Please Login as Manager.');");
             out.println("</script>");
+            // display login page after the alert message
             RequestDispatcher rd = request.getRequestDispatcher("index.html");
             rd.include(request, response);
         }

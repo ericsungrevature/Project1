@@ -7,6 +7,7 @@ public class Ticket {
 	private int id;
 	private int user_id;
 	private double value;
+	private String description;
 	private String status;
 	public int getId() {return id;}
 	public void setId(int id) {this.id = id;}
@@ -17,4 +18,12 @@ public class Ticket {
 	public void setValue(double value) {this.value = Math.floor(value * 100) / 100;}
 	public String getStatus() {return status;}
 	public void setStatus(String status) {this.status = status;}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

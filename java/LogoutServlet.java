@@ -13,11 +13,13 @@ public class LogoutServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		// alert message inform user log out is success
 		out.println("<script>");
 		out.println("alert('Successfully Logged Out');");
 		out.println("</script>");
 		HttpSession session = request.getSession(false);
 		session.removeAttribute("user");
+		// display login page after log out
 		RequestDispatcher rd = request.getRequestDispatcher("index.html");
 		rd.include(request, response);
 		out.close();
