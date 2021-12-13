@@ -1,26 +1,28 @@
-Project1
+# Project1
 Expense Reimbursement System (ERS) - Java Javalin JDBC
 
-Project Description
+# Project Description
 The ERS is a application that will manage the process of reimbursing employees for expenses incurred while on company time. As employees in the company, they can login to the application with username and password. After, they can submit requests for reimbursement and view their past reimbursement tickets and the pending requests. As finance manager in the company, they can login to the application with username and password. After, they can view all reimbursement requests and past history of reimbursement of all employees in the company. Also, finance managers are authorized to approve and/or deny requests for expense reimbursement.
 
-Technologies Used
-HTML
-JAVA
-JDBC
-MySQL
-Servlet
-Tomcat
-BootStrap
-Maven
-Hibernate
-Features
+# Technologies Used
+* HTML
+* JAVA
+* JDBC
+* MySQL
+* Servlet
+* Tomcat
+* BootStrap
+* Maven
+* Hibernate
+
+# Features
 Allow users to login and logout the application.
 Allow employees to create and submit the reimbursement request tickts.
 Employees can only view their own request tickts.
 Allow finance manager to view all past history of reimbursement request tickts.
 Allow finance manager to approve and/or deny the reimbursement requests.
-Getting Started
+
+# Getting Started
 You can simply download the zip package or clone it with this url: https://github.com/ericsungrevature/Project1.git.
 git clone comand: git clone https://github.com/ericsungrevature/Project1.git
 Create table for user and ticket in database.
