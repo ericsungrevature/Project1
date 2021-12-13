@@ -62,6 +62,6 @@ For Finance Manager
 7. If you are finished, you can click logout button to logout the application.
 
 # Contributors
-My team member: Eric Sung
+Team members: Jae Park, Eric Sung
 
 Team name: Team Team
